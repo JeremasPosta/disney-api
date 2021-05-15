@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+char_1 = Character.create(image: "image.jpg", name: "Luke", age: 35, weight: 73, history: "Son of Vader", filmography: "Any important really")
