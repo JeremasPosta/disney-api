@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_15_110553) do
+ActiveRecord::Schema.define(version: 2021_05_19_015433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "characters", force: :cascade do |t|
-    t.string "image"
-    t.string "name"
-    t.integer "age"
-    t.integer "weight"
-    t.text "history"
-    t.text "filmography"
+    t.string "name", default: ""
+    t.string "image", default: "non_character.png"
+    t.integer "age", default: 0
+    t.integer "weight", default: 0
+    t.text "history", default: ""
+    t.text "filmography", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

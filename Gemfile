@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'figaro'
   gem 'ffi'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
