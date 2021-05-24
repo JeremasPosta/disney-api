@@ -30,3 +30,6 @@
 /.local_creds
 # Ignore application configuration
 /config/application.yml
+
+# Ignore cloudinary keys
+/config/cloudinary.yml
