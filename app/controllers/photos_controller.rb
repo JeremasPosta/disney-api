@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
 
   private
     def photo_params
-      params.permit(:image)
+      params.require(:image)
     end
 
     def respond_to_photo
@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
       else
         render json: {}, status: 400
     end
-    
+
   end
 
 end
