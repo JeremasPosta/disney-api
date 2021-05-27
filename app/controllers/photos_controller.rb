@@ -1,12 +1,12 @@
 class PhotosController < ApplicationController
 
   def create
-    @photo = Photo.create(photo_params)
+    @photo = Photo.create(photo_params())
     respond_to_photo
   end
 
   private def photo_params
-      params.permit(:image, :caption)
+      params.permit(:image)
     end
 
   private def respond_to_photo
