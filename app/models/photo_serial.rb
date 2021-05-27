@@ -12,7 +12,7 @@ class PhotoSerial < ApplicationController
     {
       photo: {
         id: photo.id,
-        image_url: photo.get_image_url(),
+        image_url: photo.get_image_url,
         caption: photo.caption
       }
     }

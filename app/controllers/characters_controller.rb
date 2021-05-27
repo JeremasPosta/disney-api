@@ -15,12 +15,6 @@ class CharactersController < ApplicationController
 
   # POST /characters
   def create
-    puts "\n**********************************\n"
-    # params.merge!({image: "Naranja Fanta"})
-    print params.fetch(:image)
-    puts "\n**********************************\n"
-    # puts PhotosController.fotito(params.extract!(:image)) #esto falla, lo usamos de flag
-    puts "\n**********************************\n"
     @character = Character.new(character_params)
 
     if @character.save
@@ -52,7 +46,7 @@ class CharactersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def character_params
-       params.permit(:image, :name, :age, :weight, :history, :filmography) #This works, 
-      # params.require(:character).permit(:image, :name, :age, :weight, :history, :filmography)
+      #  params.permit(:image, :name, :age, :weight, :history, :filmography)                  #This works, 
+      params.require(:character).permit(:image, :name, :age, :weight, :history, :filmography) #But this work better
     end
 end
