@@ -5,7 +5,7 @@ class PhotoSerial < ApplicationController
   end
 
   def new_photo_serial
-    serialize_photo(@photo).to_json()
+    serialize_photo(@photo).to_json
   end
 
   private def serialize_photo(photo)
