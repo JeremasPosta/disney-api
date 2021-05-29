@@ -11,8 +11,7 @@ class AuthUser
   end
 
   private
-
-  attr_accessor :email, :password
+  attr_accessor :email, :password 
 
   def user
     user = User.find_by_email(email)
