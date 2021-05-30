@@ -1,14 +1,13 @@
 class JsonWebToken
   class << self
+    SALTY = '07987fe0912905527d899213d65029b6aafb26f2d271fd23ba26eb0ddf7be278e0aa7df2fef6eac2a8c633b32633beb53923490b2e40ff21a168ea1a461a1e14'
     def encode(payload, exp = 24.hours.from_now)
       payload[:exp] = exp.to_i
-      puts "Bazinga! key >" + Rails.application.secrets.secret_key_base.to_s
-      JWT.encode(payload, Rails.application.secrets.secret_key_base)
+      JWT.encode(payload, SALTY)
     end
  
     def decode(token)
-      puts Rails.application.secrets.secret_key_base.to_s
-      body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
+      body = JWT.decode(token, SALTY)[0]
       HashWithIndifferentAccess.new body
     end
   end
