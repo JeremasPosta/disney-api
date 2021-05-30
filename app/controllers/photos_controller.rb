@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :authenticate_request
   before_action :set_photo, only: [:show, :update, :destroy]
 
   # GET /photos
