@@ -33,3 +33,6 @@
 
 # Ignore cloudinary keys
 /config/cloudinary.yml
+# Ignore sendgrid keys
+sendgrid.env
+/app/commands/sengridtest.rb
