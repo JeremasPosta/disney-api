@@ -7,9 +7,9 @@ class ApplicationController < ActionController::API
   def authenticate_request
     @current_user = AuthApiRequest.call(request.headers).result
 
-      tokenite = request.authorization
+      tokenite = request.authorization.to_s
 
-    puts "\n\n**********************\n\n" + tokenite.to_s + "\n\n**********************\n\n"
-    render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+    puts "\n\n**********************\n\n" + tokenite + "\n\n**********************\n\n"
+    render json: { error: "Not Authorized #{tokenite}" }, status: 401 unless @current_user
   end
 end
