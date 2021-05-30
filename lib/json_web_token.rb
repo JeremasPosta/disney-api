@@ -9,6 +9,7 @@ class JsonWebToken
       body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
       HashWithIndifferentAccess.new body
     rescue
+      puts "Bazinga!(If you are seeing this, please delete this line)."
       nil
     end
   end
