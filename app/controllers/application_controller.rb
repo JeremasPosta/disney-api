@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::API
   attr_reader :current_user
 
-  private
-
   def authenticate_request
     @current_user = AuthApiRequest.call(request.headers).result
 
