@@ -7,12 +7,7 @@ class JsonWebToken
  
     def decode(token)
       body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
-      puts body.inspect
-      puts (HashWithIndifferentAccess.new body).inspect
       HashWithIndifferentAccess.new body
-    rescue
-      puts "Bazinga!(If you are seeing this, please delete this line)."
-      nil
     end
   end
  end
