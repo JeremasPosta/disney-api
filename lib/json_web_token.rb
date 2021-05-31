@@ -9,6 +9,8 @@ class JsonWebToken
     def decode(token)
       body = JWT.decode(token, SALTY)[0]
       HashWithIndifferentAccess.new body
+    rescue
+      nil
     end
   end
  end
