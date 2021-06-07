@@ -9,7 +9,7 @@ The current endpoints working are:
 
 https://alkemy-disney-api.herokuapp.com/sign-up for POST name, email and password for new users
 
-https://alkemy-disney-api.herokuapp.com/login for POST email and password, it response a Token to authenticate other endpoints.
+https://alkemy-disney-api.herokuapp.com/login for POST email and password, it response a Token to authenticate other endpoints. The Authentication token must be set as Bearer token.
 
 https://alkemy-disney-api.herokuapp.com/photos for GET list and POST new photos for the other models. Response the photo URL in CLoudinary.
 
