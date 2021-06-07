@@ -3,7 +3,15 @@ class CharactersController < ApplicationController
 
   # GET /characters
   def index
-    @characters = Character.all
+    search_param = params.dup
+    search_param.delete('controller')
+    search_param.delete('action')
+    
+    if search_param.blank?
+      @characters = Character.select(:id, :name, :image)
+    end
+    @characters ||= Character.where(["name = :name OR id = :id OR age = :age OR weight = :weight", name: params[:name], id: params[:id], age: params[:age], weight: params[:weight]])
+  
 
     render json: @characters
   end

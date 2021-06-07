@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :genres
   resources :screen_shows, :path => 'movies'
   resources :characters, only: [:index, :show, :create, :update, :destroy]
   resources :photos
