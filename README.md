@@ -1,24 +1,16 @@
-# README
+# Alkemy Disney Api Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a Challenge for Alkemy.org.
 
-Things you may want to cover:
+The objective is to develop a Rest API with many characteristics based on manage Disney characters and their films and series.
 
-* Ruby version
+The current endpoints working are:
 
-* System dependencies
 
-* Configuration
+https://alkemy-disney-api.herokuapp.com/sign-up for POST name, email and password for new users
 
-* Database creation
+https://alkemy-disney-api.herokuapp.com/login for POST email and password, it response a Token to authenticate other endpoints.
 
-* Database initialization
+https://alkemy-disney-api.herokuapp.com/photos for GET list and POST new photos for the other models. Response the photo URL in CLoudinary.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://alkemy-disney-api.herokuapp.com/characters for GET list and POST new characters.
