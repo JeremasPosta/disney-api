@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :genres
-  resources :screen_shows, :path => 'movies'
+  resources :movies
   resources :characters, only: [:index, :show, :create, :update, :destroy]
   resources :photos
   post 'sign-up', to: 'users#create'

@@ -93,7 +93,7 @@ Movies POST example
 
 ```
 {
-    "screen_show": {
+    "movie": {
         "image": "imagencita.jpg",
         "title": "Iron Man",
         "realese": "01/10/2006",

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_110840) do
+ActiveRecord::Schema.define(version: 2021_10_02_193037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_06_06_110840) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cast_in_movies", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_cast_in_movies_on_character_id"
+    t.index ["movie_id"], name: "index_cast_in_movies_on_movie_id"
+  end
+
   create_table "characters", force: :cascade do |t|
     t.string "name", default: ""
     t.string "image", default: "non_character.png"
@@ -57,19 +66,11 @@ ActiveRecord::Schema.define(version: 2021_06_06_110840) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.text "related_shows"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.text "caption"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "url"
-  end
-
-  create_table "screen_shows", force: :cascade do |t|
+  create_table "movies", force: :cascade do |t|
     t.string "title", default: ""
     t.string "image", default: "non_character.png"
     t.date "realese"
@@ -77,6 +78,15 @@ ActiveRecord::Schema.define(version: 2021_06_06_110840) do
     t.text "cast_characters", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_movies_on_genre_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.text "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,4 +99,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_110840) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cast_in_movies", "characters"
+  add_foreign_key "cast_in_movies", "movies"
+  add_foreign_key "movies", "genres"
 end

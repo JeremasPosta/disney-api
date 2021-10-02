@@ -6,4 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-char_1 = Character.create(image: "image.jpg", name: "Luke", age: 35, weight: 73, history: "Son of Vader", filmography: "Any important really")
+Character.create(image: "image.jpg", name: "Luke", age: 35, weight: 73, history: "Son of Vader")
+genre = Genre.create(image: "image.jpg", name: "Sci-Fi")
+show = Movie.create(image: "image.jpg", title: "Star Wars", realese: DateTime.now, qualification: 5, genre_id: 13)
+puts show.inspect
+puts genre.inspect
+
+
