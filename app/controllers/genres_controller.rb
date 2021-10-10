@@ -10,7 +10,7 @@ class GenresController < ApplicationController
 
   # GET /genres/1
   def show
-    render json: @genre
+    render json: @genre, serializer: GenreDetailSerializer
   end
 
   # POST /genres

@@ -3,22 +3,13 @@ class CharactersController < ApplicationController
 
   # GET /characters
   def index
-    search_param = params.dup
-    search_param.delete('controller')
-    search_param.delete('action')
-    
-    if search_param.blank?
-      @characters = Character.select(:id, :name, :image)
-    end
-    @characters ||= Character.where(["name = :name OR id = :id OR age = :age OR weight = :weight", name: params[:name], id: params[:id], age: params[:age], weight: params[:weight]])
-  
-
-    render json: @characters
+    @characters = Character.all
+    render json: @characters, each_serializer: CharacterSerializer
   end
 
   # GET /characters/1
   def show
-    render json: @character
+    render json: @character, serializer: CharacterDetailSerializer
   end
 
   # POST /characters
@@ -54,7 +45,6 @@ class CharactersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def character_params
-      #  params.permit(:image, :name, :age, :weight, :history, :filmography)                  #This works, 
-      params.require(:character).permit(:image, :name, :age, :weight, :history) #But this work better
+      params.require(:character).permit(:image, :name, :age, :weight, :history)
     end
 end
