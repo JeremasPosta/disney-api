@@ -1,9 +1,16 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :update, :destroy]
 
+  CharacterReducer = Rack::Reducer.new(
+    Character.all,
+    ->(name:)   {where('lower(name) like ?', "%#{name.downcase}%")},
+    ->(age:)    {where(age: age)},
+    ->(order:)  {reorder(order)}
+  )
+
   # GET /characters
   def index
-    @characters = Character.all
+    @characters = CharacterReducer.apply(request.query_parameters)
     render json: @characters, each_serializer: CharacterSerializer
   end
 
