@@ -5,6 +5,8 @@ class CharactersController < ApplicationController
     Character.all,
     ->(name:)   {where('lower(name) like ?', "%#{name.downcase}%")},
     ->(age:)    {where(age: age)},
+    ->(movies:)    {joins(:movies).where({"cast_in_movies.movie_id" => movies})},
+    ->(weight:) {where(weight: weight)},
     ->(order:)  {reorder(order)}
   )
 
