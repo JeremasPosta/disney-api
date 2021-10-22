@@ -1,10 +1,17 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :update, :destroy]
 
+  MovieReducer = Rack::Reducer.new(
+    Movie.all,
+    ->(title:)   {where('lower(title) like ?', "%#{title.downcase}%")},
+    ->(realese:) {where(realese: realese)},
+    ->(genre:)    {joins(:genre).where({"genre.id" => genre})},
+    ->(order:)  {reorder(order)}
+  )
+
   # GET /movies
   def index
-    @movies = Movie.all
-
+    @movies = MovieReducer.apply(request.query_parameters)
     render json: @movies
   end
 
