@@ -1,9 +1,16 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: [:show, :update, :destroy]
 
+  GenreReducer = Rack::Reducer.new(
+    Genre.all,
+    ->(name:)   {where('lower(name) like ?', "%#{name.downcase}%")},
+    ->(movies:) {joins(:movies).where({"movies.id" => movies})},
+    ->(order:)  {reorder(order)}
+  )
+
   # GET /genres
   def index
-    @genres = Genre.all
+    @genres = GenreReducer.apply(request.query_parameters)
 
     render json: @genres
   end
