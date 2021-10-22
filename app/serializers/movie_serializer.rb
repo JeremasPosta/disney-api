@@ -1,3 +1,3 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :title, :image, :realese
+  attributes :id, :title, :image, :realese
 end

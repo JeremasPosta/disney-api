@@ -1,4 +1,4 @@
 class GenreDetailSerializer < ActiveModel::Serializer
-  attributes :name, :image
+  attributes :id, :name, :image
   has_many :movies
 end
