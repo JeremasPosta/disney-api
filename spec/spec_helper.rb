@@ -97,4 +97,19 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  def get_authentication_token
+    post sign_up_url, params: {
+      "name": "Aquiles Bailo",
+      "email": "aquiles@bailo.com",
+      "password": "123123"
+    }
+    post login_url, params: {
+      "email": "aquiles@bailo.com",
+      "password": "123123"
+    }
+    parsed = JSON.parse(response.body)
+    @bearer_token = parsed["auth_token"]
+  end
+
 end
