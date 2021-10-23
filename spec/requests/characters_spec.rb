@@ -17,7 +17,6 @@ RSpec.describe "/characters", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Character.create! valid_attributes
-      puts valid_headers.inspect
       get characters_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end

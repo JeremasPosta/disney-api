@@ -17,11 +17,11 @@ RSpec.describe "/genres", type: :request do
   # Genre. As you add validations to Genre, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {image: "image.jpg", name: "Sci-Fi"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {image: "g", name: 4}
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -29,7 +29,7 @@ RSpec.describe "/genres", type: :request do
   # GenresController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
-    {}
+    {"Authorization": get_authentication_token}
   }
 
   describe "GET /index" do
@@ -43,7 +43,7 @@ RSpec.describe "/genres", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       genre = Genre.create! valid_attributes
-      get genre_url(genre), as: :json
+      get genre_url(genre), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -77,7 +77,7 @@ RSpec.describe "/genres", type: :request do
         post genres_url,
              params: { genre: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end
@@ -85,7 +85,7 @@ RSpec.describe "/genres", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {image: "image2.jpg", name: "Fantasy"}
       }
 
       it "updates the requested genre" do
@@ -93,7 +93,6 @@ RSpec.describe "/genres", type: :request do
         patch genre_url(genre),
               params: { genre: new_attributes }, headers: valid_headers, as: :json
         genre.reload
-        skip("Add assertions for updated state")
       end
 
       it "renders a JSON response with the genre" do
@@ -111,7 +110,7 @@ RSpec.describe "/genres", type: :request do
         patch genre_url(genre),
               params: { genre: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end
