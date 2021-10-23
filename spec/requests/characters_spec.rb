@@ -76,7 +76,6 @@ RSpec.describe "/characters", type: :request do
         patch character_url(character),
               params: { character: new_attributes }, headers: valid_headers, as: :json
         character.reload
-        skip("Add assertions for updated state")
       end
 
       it "renders a JSON response with the character" do
