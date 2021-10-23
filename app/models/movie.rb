@@ -6,5 +6,7 @@ class Movie < ApplicationRecord
   belongs_to :genre
   has_many :cast_in_movies
   has_many :characters, through: :cast_in_movies, foreign_key: :character_id
+
+  # accepts_nested_attributes_for :characters
 end
 
