@@ -43,6 +43,8 @@ class GenresController < ApplicationController
   # DELETE /genres/1
   def destroy
     @genre.destroy
+    
+    render json: @genre, status: :ok
   end
 
   private
