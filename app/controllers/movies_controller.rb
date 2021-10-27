@@ -43,6 +43,7 @@ class MoviesController < ApplicationController
   # DELETE /movies/1
   def destroy
     @movie.destroy
+    render json: @movie, status: :ok
   end
 
   private
