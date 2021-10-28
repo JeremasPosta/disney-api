@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   resources :photos, only: [:index, :show, :create, :update, :destroy]
   resources :cast_in_movies, only: [:index, :show, :create, :update, :destroy]
 
-  root to: 'resumes#index'
   post 'sign-up', to: 'users#create'
   post 'login', to: 'authentication#authenticate'
-  get('status' => 'status#index')
 end
