@@ -4,8 +4,19 @@ This project is a Challenge for Alkemy.org.
 
 The objective is to develop a Rest API with many characteristics based on manage Disney characters and their films and series.
 
-The current endpoints working are:
+You can read the documentation in:
+https://documenter.getpostman.com/view/15625913/UV5dctru
 
+
+The API endpoints now are working on:
+https://alkemy-disney-api.herokuapp.com/
+
+
+The tests can be done with:
+```
+rspec .\spec\
+```
+Current test coverage is about 85%.
 --------------------------------------------
 
 https://alkemy-disney-api.herokuapp.com/sign-up for POST name, email and password for new users
@@ -63,58 +74,5 @@ Response:
     }
 }
 ```
-
+You can use the cloudinary given URL to post your new Characters, Movies, and Genres, see Documentation for more info.
 --------------------------------------------
-
-https://alkemy-disney-api.herokuapp.com/characters for GET list and POST new characters.
-
-Character POST example
-
-```
-{
-    "character": {
-        "image": "imagencita.jpg",
-        "name": "Luke Skywalker",
-        "age": 28,
-        "weight": 67,
-        "filmography": "Star wars Saga",
-        "history": "Poor boy"
-    }
-}
-```
-
-https://alkemy-disney-api.herokuapp.com/characters?param=value now can ask for specific values of characters.
-
---------------------------------------------
-
-https://alkemy-disney-api.herokuapp.com/movies   for GET list and POST new movies.
-
-Movies POST example
-
-```
-{
-    "movie": {
-        "image": "imagencita.jpg",
-        "title": "Iron Man",
-        "realese": "01/10/2006",
-        "qualification": 5,
-        "cast_characters": "Tony Stark"
-    }
-}
-```
-
---------------------------------------------
-
-https://alkemy-disney-api.herokuapp.com/genres   for GET list and POST new genres.
-
-POST
-
-```
-{
-    "genre":{
-        "image": "image.png",
-        "name": "Action",
-        "related_shows": "Rambo I, II, III, IV, V, VI"
-    }
-}
-```
