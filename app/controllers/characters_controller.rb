@@ -1,24 +1,24 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :update, :destroy]
 
+  CharacterReducer = Rack::Reducer.new(
+    Character.all,
+    ->(name:)   {where('lower(name) like ?', "%#{name.downcase}%")},
+    ->(age:)    {where(age: age)},
+    ->(movies:)    {joins(:movies).where({"cast_in_movies.movie_id" => movies})},
+    ->(weight:) {where(weight: weight)},
+    ->(order:)  {reorder(order)}
+  )
+
   # GET /characters
   def index
-    search_param = params.dup
-    search_param.delete('controller')
-    search_param.delete('action')
-    
-    if search_param.blank?
-      @characters = Character.select(:id, :name, :image)
-    end
-    @characters ||= Character.where(["name = :name OR id = :id OR age = :age OR weight = :weight", name: params[:name], id: params[:id], age: params[:age], weight: params[:weight]])
-  
-
-    render json: @characters
+    @characters = CharacterReducer.apply(request.query_parameters)
+    render json: @characters, each_serializer: CharacterSerializer
   end
 
   # GET /characters/1
   def show
-    render json: @character
+    render json: @character, serializer: CharacterDetailSerializer
   end
 
   # POST /characters
@@ -44,6 +44,7 @@ class CharactersController < ApplicationController
   # DELETE /characters/1
   def destroy
     @character.destroy
+    render json: @character, status: :ok
   end
 
   private
@@ -54,7 +55,6 @@ class CharactersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def character_params
-      #  params.permit(:image, :name, :age, :weight, :history, :filmography)                  #This works, 
-      params.require(:character).permit(:image, :name, :age, :weight, :history) #But this work better
+      params.require(:character).permit(:image, :name, :age, :weight, :history)
     end
 end

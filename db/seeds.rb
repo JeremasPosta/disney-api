@@ -12,4 +12,3 @@ show = Movie.create(image: "image.jpg", title: "Star Wars", realese: DateTime.no
 puts show.inspect
 puts genre.inspect
 
-
