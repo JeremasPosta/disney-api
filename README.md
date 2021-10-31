@@ -17,6 +17,7 @@ The tests can be done with:
 rspec .\spec\
 ```
 Current test coverage is about 85%.
+
 --------------------------------------------
 
 https://alkemy-disney-api.herokuapp.com/sign-up for POST name, email and password for new users
@@ -75,4 +76,5 @@ Response:
 }
 ```
 You can use the cloudinary given URL to post your new Characters, Movies, and Genres, see Documentation for more info.
+
 --------------------------------------------
